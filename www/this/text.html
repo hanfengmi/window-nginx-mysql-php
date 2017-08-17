@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>文字</title>
+  </head>
+  <body>
+    <div class="">
+      <canvas id="canvas" width="1000" height="800">浏览器不支持canvas</canvas>
+      <div style="width:400px;margin:10px auto">
+        <input type="text" id="name" style="width:300px" name="" value="哈哈">
+        <button type="button" id="startBtn" name="button">开始</button>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    window.onload = function(){
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');
+      // focallength = 250;
+      var dots = getimgData(document.getElementById('name').value);;
+              var pause = false;
+              initAnimate();
+              function initAnimate(){
+                  dots.forEach(function(){
+                      this.x = Math.random()*canvas.width;
+                      this.y = Math.random()*canvas.height;
+                      this.z = Math.random()*focallength*2 - focallength;
+
+                      this.tx = Math.random()*canvas.width;
+                      this.ty = Math.random()*canvas.height;
+                      this.tz = Math.random()*focallength*2 - focallength;
+                      this.paint();
+                  });
+                  animate();
+              }
+    }
+  </script>
+</html>

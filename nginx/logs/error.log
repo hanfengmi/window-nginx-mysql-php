@@ -1,0 +1,5 @@
+2017/08/16 10:43:04 [error] 948#228: *1 directory index of "E:/WNMP/www/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
+2017/08/16 10:54:03 [error] 14300#14640: *1 directory index of "E:/WNMP/www/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
+2017/08/16 10:54:23 [error] 14300#14640: *5 directory index of "E:/WNMP/www/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
+2017/08/16 10:55:50 [error] 14300#14640: *5 upstream timed out (10060: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "GET /phpinfo.php HTTP/1.1", upstream: "fastcgi://127.0.0.1:9000", host: "localhost"
+2017/08/16 11:05:49 [error] 10248#3340: *1 directory index of "E:/WNMP/www/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "localhost"
