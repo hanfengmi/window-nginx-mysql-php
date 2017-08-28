@@ -94,3 +94,49 @@ extension_dir = "E:/wnmp/php/ext"
 
 >![](http://pic002.cnblogs.com/images/2011/230271/2011061514164427.jpg)  
 >就说明，nginx+php的环境已经配置好了
+
+#### php连接数据库
+
+    $servername = "localhost";
+    $username = "root";
+    $password = "1";
+
+    $conn = mysqli_connect($servername, $username, $password);
+    if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+    echo "连接成功";
+
+
+#### php创建数据库
+
+    //创建数据库
+    $sql = "CREATE DATABASE myDB2";
+    if(mysqli_query($conn,$sql)){
+      echo "数据库创建成功";
+    }else{
+      echo "Error creating database: " . mysqli_error($conn);
+    }
+
+#### php创建数据表
+>连接
+
+    //$dbname->数据库名称
+    $conn = mysqli_connect($servername,$username,$password,$dbname);
+      if(!$conn){
+        die("连接失败：".mysqli_connect_error());
+      }
+
+    $sql = "CREATE TABLE MyGuest(
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        firstname VARCHAR(30) NOT NULL,
+        lastname  VARCHAR(30) NOT NULL,
+        email VARCHAR(50),
+        reg_date TIMESTAMP
+      )";  
+
+      if(mysqli_query($conn,$sql)){
+        echo "数据表 MyGuests 创建成功";
+      }else{
+        echo "创建数据表错误：". mysqli_connect_error();
+      }
