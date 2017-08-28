@@ -140,3 +140,8 @@ extension_dir = "E:/wnmp/php/ext"
       }else{
         echo "创建数据表错误：". mysqli_connect_error();
       }
+
+#### php创建一条数据
+
+    $sql = "INSERT INTO MyGuest (firstname,lastname,email)
+    VALUES ('han','ke','han_s@123.com')";
