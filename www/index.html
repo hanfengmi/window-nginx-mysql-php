@@ -2,34 +2,125 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>nginx</title>
+    <title>blog</title>
+    <link rel="stylesheet" href="public/css/bootstrap.css">
+    <link rel="stylesheet" href="public/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="public/css/style.css?v=0.0.2">
   </head>
   <body>
-    hello 我是你
-    <a href="this/index.html">图片粒子化</a>
-    <a href="this/world.html">文字粒子化</a>
-    <a href="this/text.html">文字动画</a>
-    <h2>
-      下面是php
-    </h2>
-    <a href="index.php">打开php</a>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand hidden-sm" href="javascript:;">我的博客</a>
+      </div>
+      <div class="navbar-collapse collapse" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="hidden-sm hidden-md"><a href="javascript:;">放点啥</a></li>
+          <!-- <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'v3doc'])">Bootstrap3中文文档</a></li>
+          <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'v4doc'])">Bootstrap 4.0 预览</a></li>
+          <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'less'])">Less 教程</a></li>
+          <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'jquery'])">jQuery API</a></li>
+          <li><a href="#" target="_blank" onclick="_hmt.push(['_trackEvent', 'navbar', 'click', 'expo'])">网站实例</a></li> -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right hidden-sm">
+          <li><a href="#" class="logIn-out" data-toggle="modal" data-target="#logIn">登录</a></li>
+        </ul>
+        <div class="modal fade" id="logIn" tabindex="-1" role="dialog" aria-labelledby="logInLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="logInLabel">登录</h4>
+              </div>
+              <div class="modal-body">
+                <form id="logIn-form">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">登录名或邮箱</label>
+                    <input type="email" class="form-control" name="fname" id="exampleInputEmail1" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-info noUser">注册</button>
+                <button type="button" class="btn btn-primary confirm">确定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="center-content" style="margin:80px;">
     <p>
-      <a href="8-21.php">8-21学习</a>
+      <a href="server/php/php.php">举个栗子</a>
     </p>
-    <p>
-      <a href="form.php">表单注册</a>
-    </p>
-    <p>
-      <a href="8-25.php">8-25php</a>
-    </p>
-    <p>
-      <a href="create.php">php创建数据库</a>
-    </p>
-    <p>
-      <a href="createTable.php">php创建数据表</a>
-    </p>
-    <p>
-      <a href="addContent.php">php添加数据到数据表</a>
-    </p>
+  </div>
   </body>
+  <script type="text/javascript" src="public/js/jquery.js"></script>
+  <script type="text/javascript" src="public/js/bootstrap.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      var main = {
+        init:function(){
+          this.loglogInOut();
+          this.logIn();
+          this.noUser();
+        },
+        loglogInOut:function(){
+          var that = this;
+          $(".logIn-out").on('click',function(){
+            $('#logInLabel').html('登录');
+            $("#logIn-form")[0].reset();
+            $(".noUser").show();
+            that.initURL = 'server/logIn.php';
+          })
+        },
+        initURL:null,
+        logIn:function(){
+          var that = this;
+          $(".confirm").on('click',function(){
+            $.ajax({
+              url:that.initURL,
+              type:'POST',
+              data:$('#logIn-form').serialize(),
+              success:function(d){
+                console.log(d)
+                if(d == '新纪录插入成功'){
+                  alert('注册成' +
+                      '功');
+
+                  window.location.reload();
+                }else if(d == '登录'){
+                  alert('登陆成功');
+                  window.location.reload();
+                }else{
+                  alert('用户名或密码输入错误')
+                }
+              }
+            })
+          })
+        },
+        noUser:function(){
+          var that = this;
+          $(".noUser").on('click',function(){
+            $('#logInLabel').html('注册');
+            $(".noUser").hide();
+            $("#logIn-form")[0].reset();
+            that.initURL = 'server/addContent.php';
+          })
+        }
+      }
+      main.init();
+    })
+  </script>
 </html>
